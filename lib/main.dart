@@ -9,8 +9,13 @@ void main() {
         style: TextStyle(fontSize: 32),
       ),
     ),
-    body: Center(
-      child: Text('Скорее бы вернуться в универ', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.amber),),
+    body: Padding(
+      padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+      child: Text(
+        'Скорее бы вернуться в универ',
+        style: TextStyle(
+            fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black),
+      ),
     ),
   )));
 }
