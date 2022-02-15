@@ -9,12 +9,12 @@ void main() {
         style: TextStyle(fontSize: 32),
       ),
     ),
-    body: Padding(
-      padding: EdgeInsets.only(left: 20, right: 20, top: 20),
-      child: Text(
-        'Скорее бы вернуться в универ',
-        style: TextStyle(
-            fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black),
+    body: Align(
+      alignment: Alignment(0, 0),
+      child:  FloatingActionButton(
+        tooltip: 'Increment',
+        onPressed: () {  },
+        child: const Icon(Icons.access_alarm),
       ),
     ),
   )));
