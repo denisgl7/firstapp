@@ -30,20 +30,48 @@ class _MyBodyState extends State<MyBody> {
 
   @override
   Widget build(BuildContext context) {
-    var items = <Widget>[];
-    for (int i = 0; i < 100000; i++) {
-      Widget item;
-      item = Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton.icon(
-                onPressed: (){}, icon: Icon(Icons.add), label: Text('$i'))
-          ]);
+
+    List<ListItem> items = [];
+    for (int i = 0; i < 1000; i++) {
+      ListItem item;
+      if(i % 5 == 0)
+        {
+          item = HeadItem('$i');
+        }
+      else
+        {
+          item = MessageItem('$i');
+        }
       items.add(item);
     }
-    return ListView(
-      scrollDirection: Axis.vertical,
-      children: items,
-    );
+    return ListView.builder(itemBuilder: (context, index){
+        var item = items[index];
+        if(item is MessageItem)
+          {
+            return Card(
+              child: Text(item.message, style: TextStyle(fontSize: 25),),
+            );
+          }
+        else if(item is HeadItem)
+          {
+            return Container(child: Text(item.title, style: TextStyle(fontSize: 56),), color: Colors.blue,);
+          }
+        return SizedBox();
+    });
   }
 }
+
+class ListItem{}
+
+class HeadItem extends ListItem{
+  String title;
+  HeadItem(this.title);
+}
+
+class MessageItem extends ListItem{
+  String message;
+  MessageItem(this.message);
+}
+
+
+
