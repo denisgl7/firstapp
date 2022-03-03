@@ -15,48 +15,35 @@ class MyFirstApp extends StatelessWidget {
                 style: TextStyle(fontSize: 32),
               ),
             ),
-            body: Column(
-              children: [MyButton(), MyButton(), MyButton()],
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
-            )));
+            body: MyBody()));
   }
 }
 
-class MyButton extends StatefulWidget {
+class MyBody extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _MyButtonState();
+  State<StatefulWidget> createState() => _MyBodyState();
 }
 
-class _MyButtonState extends State<MyButton> {
+class _MyBodyState extends State<MyBody> {
   int value = 0;
   double fontSize = 22;
-  Color color = Colors.blue;
-  Color buttonFontColor = Colors.white;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-        child: Text(
-          value <= 20 ? "Значение: $value" : "Больше 20",
-          style: TextStyle(fontSize: fontSize, color: buttonFontColor),
-        ),
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(color),
-        ),
-        onPressed: () {
-          setState(() {
-            value = value + 1;
-            if (value > 10) {
-              fontSize = 50;
-            }
-            if (value > 20) {
-              color = Colors.red;
-            }
-            if (value > 5) {
-              buttonFontColor = Colors.yellow;
-            }
-          });
-        });
+    var items = <Widget>[];
+    for (int i = 0; i < 100000; i++) {
+      Widget item;
+      item = Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton.icon(
+                onPressed: (){}, icon: Icon(Icons.add), label: Text('$i'))
+          ]);
+      items.add(item);
+    }
+    return ListView(
+      scrollDirection: Axis.vertical,
+      children: items,
+    );
   }
 }
